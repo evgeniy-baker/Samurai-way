@@ -18,16 +18,16 @@ export const Dialogs = (props: DialogsType) => {
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     const onMessageChange = () => {
-      if (newMessageElement.current) {
-          const text = newMessageElement.current.value
-          props.updateNewMessageText(text)
-      }
+        if (newMessageElement.current) {
+            const text = newMessageElement.current.value
+            props.updateNewMessageText(text)
+        }
     }
 
     const addMessageHandler = () => {
         props.addMessage()
     }
-    
+
     return (
         <div>
             <div className={s.dialogs}>
@@ -42,11 +42,12 @@ export const Dialogs = (props: DialogsType) => {
 
                 <div className={s.textareaBlock}>
                     <div>
-                        <textarea ref={newMessageElement} value={props.dialogsPage.newMessageText}  onChange={onMessageChange}/>
+                        <textarea ref={newMessageElement} value={props.dialogsPage.newMessageText}
+                                  onChange={onMessageChange}/>
                     </div>
 
                     <div>
-                        <button onClick={ addMessageHandler }>Add post</button>
+                        <button onClick={addMessageHandler}>Add post</button>
                     </div>
                 </div>
 
