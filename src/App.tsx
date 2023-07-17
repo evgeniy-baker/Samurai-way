@@ -8,9 +8,10 @@ import News from "./components/News/News";
 import Music from "./components/Profile/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {addMessage, RootStateType, updateNewMessageText, updateNewPostText} from "./components/redux/state";
+import {RootStateType, StoreType} from "./components/redux/state";
 
 type AppState = {
+    store: StoreType
     state: RootStateType
     addPost: () => void
     updateNewPostText: (newPostText: string) => void
@@ -27,13 +28,15 @@ function App (props: AppState) {
                 <Navbar />
                 <div className='app-wrapper-content'>
 
-                    <Route path={'/profile'} render={ () => <Profile profilePage={props.state.profilePage}
-                                                                     addPost={props.addPost}
-                                                                     updateNewPostText={updateNewPostText}/> }></Route>
+                    <Route path={'/profile'} render={ () => <Profile store={props.store}
+                                                                     profilePage={props.store._state.profilePage}
+                                                                     addPost={props.store.addPost}
+                                                                     updateNewPostText={props.store.updateNewPostText}
+                    /> }></Route>
 
                     <Route path={'/dialogs'} render={ () => <Dialogs dialogsPage={props.state.dialogsPage}
                                                                      addMessage={props.addMessage}
-                                                                     updateNewMessageText={updateNewMessageText}
+                                                                     updateNewMessageText={props.updateNewMessageText}
                     /> }></Route>
 
                     <Route path={'/news'} component={News}></Route>
