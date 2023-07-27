@@ -94,6 +94,7 @@ export const store: StoreType = {
         this._rerenderEntireTree(this._state)
     },
     updateNewMessageText(newMessageText: string) {
+        console.log(newMessageText)
         this._state.dialogsPage.newMessageText = newMessageText
         this._rerenderEntireTree(this._state)
     },

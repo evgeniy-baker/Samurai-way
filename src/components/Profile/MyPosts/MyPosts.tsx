@@ -1,11 +1,9 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "../Post/Post";
-import {PostType, StoreType} from "../../redux/state";
+import {PostType} from "../../redux/state";
 
 type MyPostType = {
-    store: StoreType
-
     posts: PostType[]
     addPost: () => void
     newPostText: string
@@ -21,14 +19,12 @@ export const MyPosts = (props: MyPostType) => {
     const onPostChange = () => { // обработчик события для value textarea
         if (addPostElement.current) {
             let text = addPostElement.current.value
-            props.store.updateNewPostText(text)
-            // props.updateNewPostText(text)
+            props.updateNewPostText(text)
         }
     }
 
     const addPostHandler = () => {
-        props.store.addPost()
-        // props.addPost()
+        props.addPost()
     }
 
     return (

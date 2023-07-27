@@ -12,7 +12,7 @@ import {RootStateType, StoreType} from "./components/redux/state";
 
 type AppState = {
     store: StoreType
-    state: RootStateType
+    //  state: RootStateType
     addPost: () => void
     updateNewPostText: (newPostText: string) => void
     addMessage: () => void
@@ -28,15 +28,14 @@ function App (props: AppState) {
                 <Navbar />
                 <div className='app-wrapper-content'>
 
-                    <Route path={'/profile'} render={ () => <Profile store={props.store}
-                                                                     profilePage={props.store._state.profilePage}
-                                                                     addPost={props.store.addPost}
-                                                                     updateNewPostText={props.store.updateNewPostText}
+                    <Route path={'/profile'} render={ () => <Profile profilePage={props.store._state.profilePage}
+                                                                     addPost={props.store.addPost.bind(props.store)}
+                                                                     updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                     /> }></Route>
 
-                    <Route path={'/dialogs'} render={ () => <Dialogs dialogsPage={props.state.dialogsPage}
-                                                                     addMessage={props.addMessage}
-                                                                     updateNewMessageText={props.updateNewMessageText}
+                    <Route path={'/dialogs'} render={ () => <Dialogs dialogsPage={props.store._state.dialogsPage}
+                                                                     addMessage={props.store.addMessage.bind(props.store)}
+                                                                     updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
                     /> }></Route>
 
                     <Route path={'/news'} component={News}></Route>
