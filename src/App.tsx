@@ -8,15 +8,16 @@ import News from "./components/News/News";
 import Music from "./components/Profile/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {RootStateType, StoreType} from "./components/redux/state";
+import {ActionsType, RootStateType, StoreType} from "./components/redux/state";
 
 type AppState = {
     store: StoreType
     //  state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newPostText: string) => void
-    addMessage: () => void
-    updateNewMessageText: (newMessageText: string) => void
+    dispatch: (action: ActionsType) => void
+    // addPost: () => void
+    // updateNewPostText: (newPostText: string) => void
+    // addMessage: () => void
+    // updateNewMessageText: (newMessageText: string) => void
 }
 
 function App (props: AppState) {
@@ -29,13 +30,15 @@ function App (props: AppState) {
                 <div className='app-wrapper-content'>
 
                     <Route path={'/profile'} render={ () => <Profile profilePage={props.store._state.profilePage}
-                                                                     addPost={props.store.addPost.bind(props.store)}
-                                                                     updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                                                                     dispatch={props.dispatch}
+                                                                     // addPost={props.store.addPost.bind(props.store)}
+                                                                     // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                     /> }></Route>
 
                     <Route path={'/dialogs'} render={ () => <Dialogs dialogsPage={props.store._state.dialogsPage}
-                                                                     addMessage={props.store.addMessage.bind(props.store)}
-                                                                     updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
+                                                                     dispatch={props.dispatch}
+                                                                     // addMessage={props.store.addMessage.bind(props.store)}
+                                                                     // updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
                     /> }></Route>
 
                     <Route path={'/news'} component={News}></Route>
