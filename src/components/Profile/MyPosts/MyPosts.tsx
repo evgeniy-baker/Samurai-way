@@ -1,14 +1,13 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "../Post/Post";
-import {ActionsType, addPostActionCreator, PostType, updateNewPostTextActionCreator} from "../../redux/state";
+import {ActionsType, PostType} from "../../redux/state";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/profile-reducer";
 
 type MyPostType = {
     posts: PostType[]
     newPostText: string
     dispatch: (action: ActionsType) => void
-    // addPost: () => void
-    // updateNewPostText: (newPostText: string) => void
 }
 
 export const MyPosts = (props: MyPostType) => {
@@ -20,16 +19,12 @@ export const MyPosts = (props: MyPostType) => {
     const onPostChange = () => { // обработчик события для value textarea
         if (addPostElement.current) {
             let text = addPostElement.current.value
-            // props.updateNewPostText(text)
-            // props.dispatch({type: "UPDATE-NEW-POST-TEXT", newPostText: text})
             const action = updateNewPostTextActionCreator(text)
             props.dispatch(action)
         }
     }
 
     const addPostHandler = () => {
-        // props.addPost()
-        // props.dispatch({type: "ADD-POST"})
         props.dispatch(addPostActionCreator())
     }
 

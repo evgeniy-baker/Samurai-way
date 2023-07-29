@@ -8,16 +8,12 @@ import News from "./components/News/News";
 import Music from "./components/Profile/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {ActionsType, RootStateType, StoreType} from "./components/redux/state";
+import {ActionsType, StoreType} from "./components/redux/state";
 
 type AppState = {
     store: StoreType
     //  state: RootStateType
     dispatch: (action: ActionsType) => void
-    // addPost: () => void
-    // updateNewPostText: (newPostText: string) => void
-    // addMessage: () => void
-    // updateNewMessageText: (newMessageText: string) => void
 }
 
 function App (props: AppState) {
@@ -31,14 +27,10 @@ function App (props: AppState) {
 
                     <Route path={'/profile'} render={ () => <Profile profilePage={props.store._state.profilePage}
                                                                      dispatch={props.dispatch}
-                                                                     // addPost={props.store.addPost.bind(props.store)}
-                                                                     // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                     /> }></Route>
 
                     <Route path={'/dialogs'} render={ () => <Dialogs dialogsPage={props.store._state.dialogsPage}
                                                                      dispatch={props.dispatch}
-                                                                     // addMessage={props.store.addMessage.bind(props.store)}
-                                                                     // updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
                     /> }></Route>
 
                     <Route path={'/news'} component={News}></Route>
