@@ -7,7 +7,7 @@ import {RootStateType, store} from "./components/redux/state";
 const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
         <App store={store}
-             //  state={state}
+             state={state}
              dispatch={store.dispatch.bind(store)}
         />,
         document.getElementById('root')
@@ -16,4 +16,7 @@ const rerenderEntireTree = (state: RootStateType) => {
 
 rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(() => {
+    const state = store.getState()
+    rerenderEntireTree(state)
+} )
