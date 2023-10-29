@@ -26,8 +26,7 @@ function App(props: AppState) {
                 <Navbar/>
                 <div className='app-wrapper-content'>
 
-                    <Route path={'/profile'} render={() => <Profile profilePage={props.store.getState().profilePage}
-                                                                    dispatch={props.dispatch}
+                    <Route path={'/profile'} render={() => <Profile store={props.store}
                     />}></Route>
 
                     <Route path={'/dialogs'} render={() => <Dialogs dialogsPage={props.store.getState().dialogsPage}

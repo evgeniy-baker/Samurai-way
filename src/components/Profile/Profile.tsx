@@ -1,11 +1,10 @@
 import React from 'react';
-import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionsType, ProfilePageType} from "../redux/store";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {StoreType} from "../redux/redux-store";
 
 type ProfileType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionsType) => void
+    store: StoreType // для прокидывания в контейнерную компоненту MyPostsContainer
 }
 
 const Profile = (props: ProfileType) => {
@@ -13,10 +12,7 @@ const Profile = (props: ProfileType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts
-                posts={props.profilePage.posts}
-                newPostText={props.profilePage.newPostText}
-                dispatch={props.dispatch}
+            <MyPostsContainer store={props.store}
             />
         </div>
     );
