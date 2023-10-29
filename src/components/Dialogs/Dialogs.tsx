@@ -2,31 +2,32 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionsType, DialogPageType} from "../redux/store";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../redux/dialogs-reducer";
+import {DialogPageType} from "../redux/store";
 
 type DialogsType = {
     dialogsPage: DialogPageType
-    dispatch: (action: ActionsType) => void
+    updateNewMessageText: (text: string) => void
+    addMessage: () => void
 }
 
 export const Dialogs = (props: DialogsType) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
-    let messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} id={m.id} message={m.message}/>)
+    const state = props.dialogsPage
+
+    let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
+    let messagesElements = state.messages.map(m => <Message key={m.id} id={m.id} message={m.message}/>)
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     const onMessageChange = () => {
         if (newMessageElement.current) {
             const text = newMessageElement.current.value
-            props.dispatch( updateNewMessageTextActionCreator(text) )
+            props.updateNewMessageText(text)
         }
     }
 
     const addMessageHandler = () => {
-        // props.addMessage()
-        props.dispatch( addMessageActionCreator() )
+        props.addMessage()
     }
 
     return (
@@ -43,7 +44,8 @@ export const Dialogs = (props: DialogsType) => {
 
                 <div className={s.textareaBlock}>
                     <div>
-                        <textarea ref={newMessageElement} value={props.dialogsPage.newMessageText}
+                        <textarea ref={newMessageElement}
+                                  value={props.dialogsPage.newMessageText}
                                   onChange={onMessageChange}/>
                     </div>
 

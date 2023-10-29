@@ -14,7 +14,7 @@ export const MyPostsContainer = (props: MyPostType) => {
 
     const state = props.store.getState()
 
-    const onPostChange = (text: string) => { // обработчик события для value textarea
+    const onPostChange = (text: string) => {    // обработчик события для value textarea
             const action = updateNewPostTextActionCreator(text)
             props.store.dispatch(action)
     }

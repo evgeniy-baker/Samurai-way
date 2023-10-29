@@ -1,8 +1,3 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
-
-
-
 export type PostType = {
     id?: number
     message: string
@@ -32,14 +27,14 @@ export type RootStateType = {
 
 
 
-export type StoreType = {
-    _state: RootStateType
-    getState: () => RootStateType
-
-    _rerenderEntireTree: (state: RootStateType) => void
-    subscribe: (observer: (state: RootStateType) => void) => void
-    dispatch: (action: ActionsType) => void
-}
+// export type StoreType = {
+//     _state: RootStateType
+//     getState: () => RootStateType
+//
+//     _rerenderEntireTree: (state: RootStateType) => void
+//     subscribe: (observer: (state: RootStateType) => void) => void
+//     dispatch: (action: ActionsType) => void
+// }
 
 
 
