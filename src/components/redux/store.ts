@@ -66,48 +66,46 @@ type UpdateNewMessageTextActionType = {
 
 // ---------------------------------------------------- STORE
 
-export const store: StoreType = {
-    _state: {
-        profilePage: {
-            posts: [
-                {id: 1, message: 'Hello, how are you?', likesCount: 5},
-                {id: 2, message: 'Hello...', likesCount: 10}
-            ],
-            newPostText: ''
-        },
-        dialogsPage: {
-            dialogs: [
-                {id: 1, name: 'Артём'},
-                {id: 2, name: 'Айлин'},
-                {id: 3, name: 'Диана'},
-                {id: 4, name: 'Герман'},
-                {id: 5, name: 'Илья'}
-            ],
-            messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'Yo'},
-                {id: 3, message: 'Hi'},
-                {id: 4, message: 'Yo'},
-                {id: 5, message: 'Hi'},
-            ],
-            newMessageText: ''
-        }
-    },
-    getState() {
-        return this._state
-    },
-    _rerenderEntireTree(state: RootStateType) {
-        console.log('Стейт изменился')
-    },
-    subscribe(observer) {
-        this._rerenderEntireTree = observer // Наблюдатель
-    },
-    dispatch(action) {
-
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._rerenderEntireTree(this._state)
-
-    }
-
-}
+// export const store: StoreType = {
+//     _state: {
+//         profilePage: {
+//             posts: [
+//                 {id: 1, message: 'Hello, how are you?', likesCount: 5},
+//                 {id: 2, message: 'Hello...', likesCount: 10}
+//             ],
+//             newPostText: ''
+//         },
+//         dialogsPage: {
+//             dialogs: [
+//                 {id: 1, name: 'Артём'},
+//                 {id: 2, name: 'Айлин'},
+//                 {id: 3, name: 'Диана'},
+//                 {id: 4, name: 'Герман'},
+//                 {id: 5, name: 'Илья'}
+//             ],
+//             messages: [
+//                 {id: 1, message: 'Hi'},
+//                 {id: 2, message: 'Yo'},
+//                 {id: 3, message: 'Hi'},
+//                 {id: 4, message: 'Yo'},
+//                 {id: 5, message: 'Hi'},
+//             ],
+//             newMessageText: ''
+//         }
+//     },
+//     getState() {
+//         return this._state
+//     },
+//     _rerenderEntireTree(state: RootStateType) {
+//         console.log('Стейт изменился')
+//     },
+//     subscribe(observer) {
+//         this._rerenderEntireTree = observer // Наблюдатель
+//     },
+//     dispatch(action) {
+//         this._state.profilePage = profileReducer(this._state.profilePage, action)
+//         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+//         this._rerenderEntireTree(this._state)
+//     }
+//
+// }

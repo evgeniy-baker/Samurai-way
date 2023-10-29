@@ -8,7 +8,8 @@ import News from "./components/News/News";
 import Music from "./components/Profile/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {ActionsType, RootStateType, StoreType} from "./components/redux/state";
+import {StoreType} from "./components/redux/redux-store";
+import {ActionsType, RootStateType} from "./components/redux/store";
 
 type AppState = {
     store: StoreType
@@ -16,22 +17,22 @@ type AppState = {
     dispatch: (action: ActionsType) => void
 }
 
-function App (props: AppState) {
+function App(props: AppState) {
 
     return (
         <BrowserRouter>
             <div className="app-wrapper">
-                <Header />
-                <Navbar />
+                <Header/>
+                <Navbar/>
                 <div className='app-wrapper-content'>
 
-                    <Route path={'/profile'} render={ () => <Profile profilePage={props.store._state.profilePage}
-                                                                     dispatch={props.dispatch}
-                    /> }></Route>
+                    <Route path={'/profile'} render={() => <Profile profilePage={props.store.getState().profilePage}
+                                                                    dispatch={props.dispatch}
+                    />}></Route>
 
-                    <Route path={'/dialogs'} render={ () => <Dialogs dialogsPage={props.store._state.dialogsPage}
-                                                                     dispatch={props.dispatch}
-                    /> }></Route>
+                    <Route path={'/dialogs'} render={() => <Dialogs dialogsPage={props.store.getState().dialogsPage}
+                                                                    dispatch={props.dispatch}
+                    />}></Route>
 
                     <Route path={'/news'} component={News}></Route>
                     <Route path={'/music'} component={Music}></Route>
