@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {ReducersStateType, store} from "./components/redux/redux-store";
+import {RootReducerType, store} from "./components/redux/redux-store";
 
-const rerenderEntireTree = (state: ReducersStateType) => {
+const rerenderEntireTree = (state: RootReducerType) => {
     ReactDOM.render(
         <App store={store}
              state={state}
