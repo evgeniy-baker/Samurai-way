@@ -1,33 +1,21 @@
 import React from 'react';
-import s from './MyPosts.module.css'
-import Post from "../Post/Post";
-import {ActionsType, PostType} from "../../redux/store";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
-import {StoreType} from "../../redux/redux-store";
+import {connect} from "react-redux";
+import {RootStateType} from "../../redux/store";
 
-type MyPostType = {
-    store: StoreType
+const mapStateToProps = (state: RootStateType) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
 }
 
-export const MyPostsContainer = (props: MyPostType) => {
-
-    const state = props.store.getState()
-
-    const onPostChange = (text: string) => {    // обработчик события для value textarea
-            const action = updateNewPostTextActionCreator(text)
-            props.store.dispatch(action)
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addPost: () => {dispatch(addPostActionCreator())},
+        updateNewPostText: (text: string) => {updateNewPostTextActionCreator(text)}
     }
+}
 
-    const addPostHandler = () => {
-        props.store.dispatch(addPostActionCreator())
-    }
-
-    return <MyPosts updateNewPostText={onPostChange}
-                    addPost={addPostHandler}
-                    posts={state.profilePage.posts}
-                    newPostText={state.profilePage.newPostText}
-    />;
-};
-
-export default MyPostsContainer;
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
