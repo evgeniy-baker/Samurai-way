@@ -1,9 +1,19 @@
-import {ActionsType, PostType, ProfilePageType} from "./store";
+import {ActionsType} from "./store";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 
-const initialState = {
+export type PostType = {
+    id?: number
+    message: string
+    likesCount: number
+}
+export type ProfilePageType = {
+    posts: PostType[]
+    newPostText: string     // value textarea из компоненты MyPost
+}
+
+const initialState: ProfilePageType = {
     posts: [
         {id: 1, message: 'Hello, how are you?', likesCount: 5},
         {id: 2, message: 'Hello...', likesCount: 10}
@@ -15,17 +25,24 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     id: 5,
     message: state.newPostText,
     likesCount: 0
-}) => {
+}): ProfilePageType => {
 
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = newParam
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
+            // state.posts.push(newPost)
+            // state.newPostText = ''
+            // return state
+            return {...state,
+                posts: [...state.posts, newPost], newPostText: ''}
+
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newPostText
-            return state
+            debugger
+            // state.newPostText = action.newPostText
+            // return state
+            return {...state,
+                newPostText: action.newPostText}
+
         default:
             return state
     }

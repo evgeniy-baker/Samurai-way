@@ -1,26 +1,26 @@
-export type PostType = {
+type PostType = {
     id?: number
     message: string
     likesCount: number
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: PostType[]
     newPostText: string // value textarea из компоненты MyPost
 }
-export type DialogPageType = {
+type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
     newMessageText: string  //  value textarea из компоненты Dialogs
 }
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
 }

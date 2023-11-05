@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {RootReducerType, store} from "./components/redux/redux-store";
+import {store} from "./components/redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
-const rerenderEntireTree = (state: RootReducerType) => {
+const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -19,9 +19,9 @@ const rerenderEntireTree = (state: RootReducerType) => {
     );
 };
 
-rerenderEntireTree(store.getState())
+rerenderEntireTree()
 
-store.subscribe(() => {
-    const state = store.getState()
-    rerenderEntireTree(state)
-})
+// store.subscribe(() => {
+//     const state = store.getState()
+//     rerenderEntireTree(state)
+// })

@@ -1,9 +1,23 @@
-import {ActionsType, DialogPageType, MessageType} from "./store";
+import {ActionsType} from "./store";
 
 const ADD_MESSAGE = "ADD-MESSAGE"
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT"
 
-const initialState = {
+export type DialogType = {
+    id: number
+    name: string
+}
+export type MessageType = {
+    id: number
+    message: string
+}
+export type DialogPageType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessageText: string  //  value textarea из компоненты Dialogs
+}
+
+const initialState: DialogPageType = {
     dialogs: [
         {id: 1, name: 'Артём'},
         {id: 2, name: 'Айлин'},
@@ -21,19 +35,26 @@ const initialState = {
     newMessageText: ''
 }
 
-const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType) => {
+const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {
 
     switch (action.type) {
         case ADD_MESSAGE:
             const newMessage: MessageType = {
                 id: 6, message: state.newMessageText
             }
-            state.messages.push(newMessage)
-            state.newMessageText = ''
-            return state
+            // state.messages.push(newMessage)
+            // state.newMessageText = ''
+            // return state
+            return {...state,
+                messages: [...state.messages, newMessage],
+                newMessageText: ''}
+
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessageText
-            return state
+            // state.newMessageText = action.newMessageText
+            // return state
+            return {...state,
+                newMessageText: action.newMessageText}
+
         default:
             return state
     }

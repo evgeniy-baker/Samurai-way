@@ -15,7 +15,7 @@ import {Profile} from "./components/Profile/Profile";
 //     // dispatch: (action: ActionsType) => void
 // }
 
-function App() {   //props: AppState
+function App() {   // props: AppState
 
     return (
             <div className="app-wrapper">
