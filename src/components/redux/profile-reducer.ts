@@ -30,16 +30,11 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = newParam
-            // state.posts.push(newPost)
-            // state.newPostText = ''
-            // return state
             return {...state,
                 posts: [...state.posts, newPost], newPostText: ''}
 
         case UPDATE_NEW_POST_TEXT:
             debugger
-            // state.newPostText = action.newPostText
-            // return state
             return {...state,
                 newPostText: action.newPostText}
 
