@@ -23,8 +23,8 @@ const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
     return {
-        addPost: () => {dispatch(addPostActionCreator())},
-        updateNewPostText: (text: string) => {dispatch(updateNewPostTextActionCreator(text))}
+        addPost: () => { dispatch(addPostActionCreator()) },
+        updateNewPostText: (text: string) => { dispatch(updateNewPostTextActionCreator(text)) }
     }
 }
 
