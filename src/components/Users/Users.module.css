@@ -1,0 +1,10 @@
+.section {
+    margin: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.userPhoto {
+    width: 100px;
+    height: 100px;
+}
