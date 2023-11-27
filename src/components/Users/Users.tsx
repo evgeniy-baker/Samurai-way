@@ -2,7 +2,13 @@ import React from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import s from "./Users.module.css"
 import axios from "axios";
-import {ResponseType} from "../redux/users-reducer";
+import {UserType} from "../redux/users-reducer";
+
+export type ResponseType = {
+    items: UserType[],
+    totalCount: number,
+    "error": null
+}
 
 export const Users = (props: UsersPropsType) => {
 

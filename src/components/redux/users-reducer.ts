@@ -2,12 +2,6 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
-export type ResponseType = {
-    items: UserType[],
-    totalCount: number,
-    "error": null
-}
-
 export type UserType = {
     name: string,
     id: number,
@@ -44,7 +38,6 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
 
     switch (action.type) {
         case FOLLOW:
-            
             return {...state,
                 users: state.users.map(u => u.id === action.userID ?
                     {...u, followed: true} : u)}
