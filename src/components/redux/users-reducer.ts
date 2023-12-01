@@ -1,6 +1,8 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 
 export type UserType = {
     name: string,
@@ -9,13 +11,6 @@ export type UserType = {
     photos: PhotosType,
     status: null,
     followed: boolean
-
-    // id: number
-    // photo: string
-    // followed: boolean
-    // fullName: string
-    // status: string
-    // location: LocationType
 }
 type PhotosType = {
     small: null,
@@ -23,15 +18,16 @@ type PhotosType = {
 }
 export type UsersPageType = {
     users: UserType[]
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 const initialState: UsersPageType = {
-    users: [
-        // {id: 1, photo: 'https://www.svgrepo.com/show/475148/bird.svg', followed: false, fullName: 'Артём', status: 'offline', location: {city: 'Saint Petersburg', country: 'Russia'}},
-        // {id: 2, photo: 'https://www.svgrepo.com/show/475148/bird.svg', followed: true, fullName: 'Айлин', status: 'online', location: {city: 'Moscow', country: 'Russia'}},
-        // {id: 3, photo: 'https://www.svgrepo.com/show/475148/bird.svg', followed: false, fullName: 'Диана', status: 'offline', location: {city: 'Saint Petersburg', country: 'Russia'}},
-        // {id: 4, photo: 'https://www.svgrepo.com/show/475148/bird.svg', followed: true, fullName: 'Герман', status: 'online', location: {city: 'Moscow', country: 'Russia'}}
-    ]
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 10,
+    currentPage: 1
 }
 
 export const usersReducer = (state: UsersPageType = initialState, action: ActionsType): UsersPageType => {
@@ -48,7 +44,13 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                     {...u, followed: false} : u)}
 
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
+
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+
+        case SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.totalUsersCount}
 
         default:
             return state
@@ -56,7 +58,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
 
 }
 
-type ActionsType = FollowActionType | UnfollowActionType | SetUsers
+type ActionsType = FollowActionType | UnfollowActionType | SetUsersActionType | SetCurrentPageActionType | SetTotalUsersCountAT
 
 type FollowActionType = {
     type: 'FOLLOW'
@@ -66,11 +68,22 @@ type UnfollowActionType = {
     type: 'UNFOLLOW'
     userID: number
 }
-type SetUsers = {
+type SetUsersActionType = {
     type: 'SET_USERS'
     users: UserType[]
+}
+type SetCurrentPageActionType = {
+    type: 'SET_CURRENT_PAGE'
+    currentPage: number
+}
+type SetTotalUsersCountAT = {
+    type: 'SET_TOTAL_USERS_COUNT'
+    totalUsersCount: number
 }
 
 export const followActionCreator = (userID: number): ActionsType  => ({type: FOLLOW, userID})
 export const unfollowActionCreator = (userID: number): ActionsType => ({type: UNFOLLOW, userID})
 export const setUsersActionCreator = (users: any): ActionsType => ({type: SET_USERS, users})
+
+export const setCurrentPageActionCreator = (currentPage: number): ActionsType => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCountActionCreator = (totalUsersCount: number): ActionsType => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})

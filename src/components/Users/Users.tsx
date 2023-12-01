@@ -18,42 +18,6 @@ export const Users = (props: UsersPropsType) => {
                 props.setUsers(res.data.items)
             })
 
-        // props.setUsers(
-        //     [
-        //         {
-        //             id: 1,
-        //             photo: 'https://www.svgrepo.com/show/475148/bird.svg',
-        //             followed: false,
-        //             fullName: 'Артём',
-        //             status: 'offline',
-        //             location: {city: 'Saint Petersburg', country: 'Russia'}
-        //         },
-        //         {
-        //             id: 2,
-        //             photo: 'https://www.svgrepo.com/show/475148/bird.svg',
-        //             followed: true,
-        //             fullName: 'Айлин',
-        //             status: 'online',
-        //             location: {city: 'Moscow', country: 'Russia'}
-        //         },
-        //         {
-        //             id: 3,
-        //             photo: 'https://www.svgrepo.com/show/475148/bird.svg',
-        //             followed: false,
-        //             fullName: 'Диана',
-        //             status: 'offline',
-        //             location: {city: 'Saint Petersburg', country: 'Russia'}
-        //         },
-        //         {
-        //             id: 4,
-        //             photo: 'https://www.svgrepo.com/show/475148/bird.svg',
-        //             followed: true,
-        //             fullName: 'Герман',
-        //             status: 'online',
-        //             location: {city: 'Moscow', country: 'Russia'}
-        //         }
-        //     ]
-        // )
     }
 
     const userPhoto = 'https://www.svgrepo.com/show/425238/users-avatar.svg'
