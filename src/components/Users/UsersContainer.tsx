@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {UsersClass} from "./UsersClass";
+import {UsersAPI} from "./UsersAPI";
 import {Dispatch} from "redux";
 import {
     followAC,
@@ -25,7 +25,7 @@ type mapDispatchPropsType = {
     setTotalUsersCount: (count: number) => void
 }
 
-const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
+export const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
 }
 
 export type UsersPropsType = mapStatePropsType & mapDispatchPropsType
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI)
