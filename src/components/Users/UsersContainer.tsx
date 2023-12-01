@@ -3,10 +3,10 @@ import {connect} from "react-redux";
 import {UsersClass} from "./UsersClass";
 import {Dispatch} from "redux";
 import {
-    followActionCreator,
-    setCurrentPageActionCreator, setTotalUsersCountActionCreator,
-    setUsersActionCreator,
-    unfollowActionCreator,
+    followAC,
+    setCurrentPageAC, setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC,
     UserType
 } from "../redux/users-reducer";
 import {RootReducerType} from "../redux/redux-store";
@@ -35,11 +35,11 @@ const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
     return {
-        follow: (userID: number) => { dispatch(followActionCreator(userID)) },
-        unfollow: (userID: number) => { dispatch(unfollowActionCreator(userID)) },
-        setUsers: (users: UserType[]) => { dispatch(setUsersActionCreator(users)) },
-        setCurrentPage: (pageNumber: number) => { dispatch(setCurrentPageActionCreator(pageNumber)) },
-        setTotalUsersCount: (totalCount: number) => { dispatch(setTotalUsersCountActionCreator(totalCount)) }
+        follow: (userID: number) => { dispatch(followAC(userID)) },
+        unfollow: (userID: number) => { dispatch(unfollowAC(userID)) },
+        setUsers: (users: UserType[]) => { dispatch(setUsersAC(users)) },
+        setCurrentPage: (pageNumber: number) => { dispatch(setCurrentPageAC(pageNumber)) },
+        setTotalUsersCount: (totalCount: number) => { dispatch(setTotalUsersCountAC(totalCount)) }
     }
 }
 
