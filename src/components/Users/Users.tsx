@@ -2,7 +2,6 @@ import React from 'react';
 import s from "./Users.module.css";
 import {UserType} from "../redux/users-reducer";
 
-
 type UsersType = {
     users: UserType[]
     pageSize: number
@@ -13,7 +12,7 @@ type UsersType = {
     onPageChanged: (pageNumber: number) => void
 }
 
-export const Users = (props: UsersType ) => {
+export const Users = (props: UsersType) => {
 
     const userPhoto = 'https://www.svgrepo.com/show/425238/users-avatar.svg'
 
@@ -24,19 +23,19 @@ export const Users = (props: UsersType ) => {
     }
 
     return (
-        <div>
-
+        <>
             <div>
                 {pages.map(p => {
-                    return <span onClick={ () => props.onPageChanged(p)}
+                    return <span key={p}
+                                 onClick={() => props.onPageChanged(p)}
                                  className={props.currentPage === p ?
                                      s.selectedPage
-                                     : ''}>{p}</span>
-                }) }
+                                     : ''}>{p}
+                    </span>
+                })}
             </div>
 
             {props.users.map(u => <div key={u.id}>{
-
                 <>
                     <section className={s.section}>
                             <span>
@@ -49,17 +48,15 @@ export const Users = (props: UsersType ) => {
                                     : <button onClick={() => props.follow(u.id)}>Unfollowed</button>}
                                 </div>
                             </span>
-
                         <span>
-                                <span>
-                                    <div>{u.name}</div>
-                                    <div>{u.status}</div>
-                                </span>
+                            <span>
+                                <div>{u.name}</div>
+                                <div>{u.status}</div>
                             </span>
+                        </span>
                     </section>
                 </>
-
             }</div>)}
-        </div>
+        </>
     )
 };
