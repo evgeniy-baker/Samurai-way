@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {UsersAPI} from "./UsersAPI";
-import {Dispatch} from "redux";
 import {
     followAC,
     setCurrentPageAC, setTotalUsersCountAC,
@@ -36,16 +35,23 @@ export const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
-    return {
-        follow: (userID: number) => { dispatch(followAC(userID)) },
-        unfollow: (userID: number) => { dispatch(unfollowAC(userID)) },
-        setUsers: (users: UserType[]) => { dispatch(setUsersAC(users)) },
-        setCurrentPage: (pageNumber: number) => { dispatch(setCurrentPageAC(pageNumber)) },
-        setTotalUsersCount: (totalCount: number) => { dispatch(setTotalUsersCountAC(totalCount)) },
-        toggleIsFetching: (isFetching: boolean) => { dispatch(toggleIsFetchingAC(isFetching)) }
-    }
-}
+// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
+//     return {
+//         follow: (userID: number) => { dispatch(followAC(userID)) },
+//         unfollow: (userID: number) => { dispatch(unfollowAC(userID)) },
+//         setUsers: (users: UserType[]) => { dispatch(setUsersAC(users)) },
+//         setCurrentPage: (pageNumber: number) => { dispatch(setCurrentPageAC(pageNumber)) },
+//         setTotalUsersCount: (totalCount: number) => { dispatch(setTotalUsersCountAC(totalCount)) },
+//         toggleIsFetching: (isFetching: boolean) => { dispatch(toggleIsFetchingAC(isFetching)) }
+//     }
+// }
+
+export const UsersContainer = connect (mapStateToProps, {
+    follow: followAC, unfollow: unfollowAC,
+    setUsers: setUsersAC, setCurrentPage: setCurrentPageAC,
+    setTotalUsersCount: setTotalUsersCountAC, toggleIsFetching: toggleIsFetchingAC
+})(UsersAPI)
 
 export type UsersPropsType = mapStatePropsType & mapDispatchPropsType
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI)
+
+// export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI)

@@ -1,9 +1,10 @@
 import React from 'react';
-import {addPostActionCreator, PostType, updateNewPostTextActionCreator} from "../../redux/profile-reducer";
+import {addPostAC, PostType, updateNewPostTextAC} from "../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {RootReducerType} from "../../redux/redux-store";
-import {Dispatch} from 'redux';
+
+
 
 type mapStatePropsType = {
     posts: PostType[]
@@ -21,13 +22,18 @@ const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
-    return {
-        addPost: () => { dispatch(addPostActionCreator()) },
-        updateNewPostText: (text: string) => { dispatch(updateNewPostTextActionCreator(text)) }
-    }
-}
+// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
+//     return {
+//         addPost: () => { dispatch(addPostActionCreator()) },
+//         updateNewPostText: (text: string) => { dispatch(updateNewPostTextActionCreator(text)) }
+//     }
+// }
+
+export const MyPostsContainer = connect(mapStateToProps, {
+        addPost: addPostAC,
+        updateNewPostText: updateNewPostTextAC
+})(MyPosts)
 
 export type MyPostsPropsType = mapStatePropsType & mapDispatchPropsType
 
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+// export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
