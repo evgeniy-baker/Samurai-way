@@ -7,8 +7,8 @@ import News from "./components/News/News";
 import Music from "./components/Profile/Music/Music";
 import Settings from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {Profile} from "./components/Profile/Profile";
 import {UsersContainer} from "./components/Users/UsersContainer";
+import {ProfileContainer} from "./components/Profile/ProfileContainer";
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
                 <Navbar/>
                 <div className='app-wrapper-content'>
 
-                    <Route path={'/profile'} render={() => <Profile />}></Route>
+                    <Route path={'/profile'} render={() => <ProfileContainer />}></Route>
                     <Route path={'/dialogs'} render={() => <DialogsContainer />}></Route>
                     <Route path={'/users'} render={() => <UsersContainer />}></Route>
                     <Route path={'/news'} component={News}></Route>

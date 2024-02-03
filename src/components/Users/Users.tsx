@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./Users.module.css";
 import {UserType} from "../redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 type UsersType = {
     users: UserType[]
@@ -40,8 +41,10 @@ export const Users = (props: UsersType) => {
                     <section className={s.section}>
                             <span>
                                 <div>
-                                    <img src={u.photos === null ? ''
+                                    <NavLink to={'/profile/' + u.id}>
+                                        <img src={u.photos === null ? ''
                                         : userPhoto} alt="" className={s.userPhoto}/>
+                                    </NavLink>
                                 </div>
                                 <div>{u.followed ?
                                     <button onClick={() => props.unfollow(u.id)}>Followed</button>
