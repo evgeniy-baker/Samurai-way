@@ -11,6 +11,9 @@ type MessageType = {
     id: number
     message: string
 }
+
+
+
 type ProfilePageType = {
     posts: PostType[]
     newPostText: string // value textarea из компоненты MyPost
@@ -40,7 +43,7 @@ type RootStateType = {
 
 // ---------------------------------------------------- ACTION TYPE
 
-export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageTextActionType
+export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageTextActionType | ProfileTypeAT
 
 type AddPostActionType = {
     type: "ADD-POST"
@@ -55,6 +58,10 @@ type AddMessageActionType = {
 type UpdateNewMessageTextActionType = {
     type: "UPDATE-NEW-MESSAGE-TEXT"
     newMessageText: string
+}
+type ProfileTypeAT = {
+    type: "SET_USER_PROFILE"
+    profile: any
 }
 
 
