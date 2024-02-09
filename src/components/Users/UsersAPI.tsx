@@ -15,10 +15,6 @@ export type ResponseType = {
 
 export class UsersAPI extends React.Component<UsersPropsType> {
 
-    // constructor(props: UsersPropsType) {     //  Можно не писать без расширения класса
-    //     super(props)
-    // }
-
     componentDidMount() {
         this.props.toggleIsFetching(true)
         axios.get<ResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)

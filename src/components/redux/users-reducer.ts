@@ -6,15 +6,15 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 export type UserType = {
-    name: string,
-    id: number,
-    uniqueUrlName: null,
-    photos: PhotosType,
-    status: null,
+    name: string
+    id: number
+    uniqueUrlName: null
+    photos: PhotosType
+    status: null
     followed: boolean
 }
 type PhotosType = {
-    small: null,
+    small: null
     large: null
 }
 export type UsersPageType = {
