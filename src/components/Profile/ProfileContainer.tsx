@@ -6,7 +6,7 @@ import {ProfileType, setUserProfileAC} from "../redux/profile-reducer";
 import {RootReducerType} from "../redux/redux-store";
 import {useParams} from "react-router-dom";
 
-export const ProfileAPI = () => {
+export const ProfileContainer = () => {
 
     const dispatch = useDispatch()
     const profile = useSelector<RootReducerType, ProfileType | null>(state => state.profilePage.profile)
