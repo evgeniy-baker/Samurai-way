@@ -37,7 +37,8 @@ export const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
 }
 
 export const UsersContainer = connect (mapStateToProps, {
-    follow: followAC, unfollow: unfollowAC,
+    follow: followAC,
+    unfollow: unfollowAC,
     setUsers: setUsersAC, setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC, toggleIsFetching: toggleIsFetchingAC
 })(UsersAPI)

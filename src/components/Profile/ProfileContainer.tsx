@@ -10,8 +10,10 @@ export const ProfileContainer = () => {
 
     const dispatch = useDispatch()
     const profile = useSelector<RootReducerType, ProfileType | null>(state => state.profilePage.profile)
+    // const id = useSelector<RootReducerType, string | null>(state => state.auth.id)
 
     const { userID } = useParams<{ userID: string}>()
+    // console.log('auth ', id)
 
     useEffect(() => {
 
@@ -19,7 +21,7 @@ export const ProfileContainer = () => {
             .then((res) => {
                 dispatch(setUserProfileAC(res.data))
             })
-        
+
     }, [])
 
 
