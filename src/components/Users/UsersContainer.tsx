@@ -7,8 +7,8 @@ import {
     setUsersAC, toggleIsFetchingAC,
     unfollowAC,
     UserType
-} from "../redux/users-reducer";
-import {RootReducerType} from "../redux/redux-store";
+} from "../../redux/users-reducer";
+import {RootReducerType} from "../../redux/redux-store";
 
 type mapStatePropsType = {
     users: UserType[]

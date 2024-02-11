@@ -2,8 +2,8 @@ import React from 'react';
 import Header from "./Header";
 import axios from "axios";
 import {connect} from "react-redux";
-import {RootReducerType} from "../redux/redux-store";
-import {authInitialState, setAuthUserDataAC, setAuthUserDataAT} from "../redux/auth-reducer";
+import {RootReducerType} from "../../redux/redux-store";
+import {authInitialState, setAuthUserDataAC, setAuthUserDataAT} from "../../redux/auth-reducer";
 
 type ResponseType = {
     data: {id: string, login: string, email: string}

@@ -1,37 +1,33 @@
 import React from "react";
-import {UserType} from "../redux/users-reducer";
-import axios from "axios";
 import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
+import {getUsers} from "../../api/api";
 
 
-
-export type ResponseType = {
-    items: UserType[],
-    totalCount: number,
-    error: null
-}
 
 export class UsersAPI extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get<ResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then(res => {
+        getUsers(this.props.currentPage, this.props.pageSize)
+        // axios.get<ResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+            .then(data => {
+                debugger
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(res.data.items)
-                this.props.setTotalUsersCount(res.data.totalCount)
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
             })
     }
 
     onPageChanged = (pageNumber: number) => {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(pageNumber)
-        axios.get<ResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then(res => {
+        getUsers(pageNumber, this.props.pageSize)
+        // axios.get<ResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials: true})
+            .then(data => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(res.data.items)
+                this.props.setUsers(data.items)
             })
     }
 

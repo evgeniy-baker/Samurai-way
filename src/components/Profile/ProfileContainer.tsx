@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {ProfileType, setUserProfileAC} from "../redux/profile-reducer";
-import {RootReducerType} from "../redux/redux-store";
+import {ProfileType, setUserProfileAC} from "../../redux/profile-reducer";
+import {RootReducerType} from "../../redux/redux-store";
 import {useParams} from "react-router-dom";
 
 export const ProfileContainer = () => {
