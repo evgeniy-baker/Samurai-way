@@ -37,10 +37,10 @@ export const setAuthUserDataAC = (id: string,
 
 export const getAuthUserDataTC = () => (dispatch: Dispatch) => {
     getAuthAPI()
-        .then((res) => {
+        .then( (res) => {
             if (res.data.resultCode === 0) {
                 const {id, email, login} = res.data.data
                 dispatch(setAuthUserDataAC(id, email, login))
             }
-        })
+        } )
 }
