@@ -15,6 +15,7 @@ export const Header = (props: AuthPropsType) => {
             </div>
         </header>
     );
+
 };
 
 export default Header;
