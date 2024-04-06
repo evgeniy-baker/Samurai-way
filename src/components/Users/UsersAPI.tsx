@@ -2,9 +2,6 @@ import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
-import {getUsersAPI} from "../../api/api";
-import {getUsersTC} from "../../redux/users-reducer";
-import {useDispatch} from "react-redux";
 
 export class UsersAPI extends React.Component<UsersPropsType> {
 

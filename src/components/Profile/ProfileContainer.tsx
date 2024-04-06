@@ -18,9 +18,7 @@ export const ProfileContainer = () => {
     }   // Если null, вернуть профиль Димыча
 
     useEffect(() => {
-
         dispatch(getUserProfileTC(Number(userID)))
-
     }, [])
 
     if (!isAuth) return <Redirect to={'/Login'}/>

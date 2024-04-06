@@ -3,6 +3,9 @@ import {connect} from "react-redux";
 import {UsersAPI} from "./UsersAPI";
 import {getUsersTC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, UserType} from "../../redux/users-reducer";
 import {RootReducerType} from "../../redux/redux-store";
+import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
+import {Dialogs} from "../Dialogs/Dialogs";
+import {compose} from "redux";
 
 type mapStatePropsType = {
     users: UserType[]
@@ -29,11 +32,20 @@ export const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
     }
 }
 
-export const UsersContainer = connect (mapStateToProps, {
-    setUsers: setUsersAC,
-    setCurrentPage: setCurrentPageAC,
-    setTotalUsersCount: setTotalUsersCountAC,
-    getUsersTC
-})(UsersAPI)
+// const AuthRedirectComponent = WithAuthRedirect(UsersAPI)
+
+// export const UsersContainer = connect (mapStateToProps, {
+//     setUsers: setUsersAC,
+//     setCurrentPage: setCurrentPageAC,
+//     setTotalUsersCount: setTotalUsersCountAC,
+//     getUsersTC
+// })(AuthRedirectComponent)
+
+export const UsersContainer = compose<any>(
+    connect(mapStateToProps, {
+        setUsers: setUsersAC, setCurrentPage: setCurrentPageAC, setTotalUsersCount: setTotalUsersCountAC, getUsersTC
+    }),
+    WithAuthRedirect
+)(UsersAPI)
 
 export type UsersPropsType = mapStatePropsType & mapDispatchPropsType

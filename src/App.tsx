@@ -18,6 +18,7 @@ function App() {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
+
                     <Switch>
                         <Route path={'/profile/:userID?'} render={() => <ProfileContainer />}></Route>
                         <Route path={'/dialogs'} render={() => <DialogsContainer />}></Route>
@@ -26,7 +27,6 @@ function App() {
                         <Route path={'/music'} component={Music}></Route>
                         <Route path={'/settings'} component={Settings}></Route>
                         <Route path={'/login'} component={Login}></Route>
-
                     </Switch>
 
                 </div>

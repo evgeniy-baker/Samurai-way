@@ -2,10 +2,9 @@ import React from 'react';
 import s from "./ProfileInfo.module.css";
 import {Preloader} from "../../Common/Preloader/Preloader";
 import {ProfileComponentType} from "../Profile";
+import {ProfileStatus} from "../ProfileStatus";
 
 export const ProfileInfo = (props: ProfileComponentType) => {
-
-    // debugger
 
     if (!props.profile) {
         return <Preloader/>
@@ -17,10 +16,11 @@ export const ProfileInfo = (props: ProfileComponentType) => {
                 <img src="" alt=""/>
             </div>
             <div className={s.descriptionBlock}>
-                    <div>{<img src={props.profile.photos.large} alt=""/>}</div>
-                    <div>{props.profile.fullName}</div>
-                    <div>{props.profile.aboutMe}</div>
+                <div>{<img src={props.profile.photos.large} alt=""/>}</div>
+                <div>{props.profile.fullName}</div>
+                <div>{props.profile.aboutMe}</div>
                 Avatar and description
+                <ProfileStatus status={'Hello'}/>
             </div>
         </div>
     );
