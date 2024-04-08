@@ -41,7 +41,7 @@ export const mapStateToProps = (state: RootReducerType): mapStatePropsType => {
 //     getUsersTC
 // })(AuthRedirectComponent)
 
-export const UsersContainer = compose<any>(
+export const UsersContainer = compose<React.ComponentType>(
     connect(mapStateToProps, {
         setUsers: setUsersAC, setCurrentPage: setCurrentPageAC, setTotalUsersCount: setTotalUsersCountAC, getUsersTC
     }),

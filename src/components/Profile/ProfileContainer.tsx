@@ -14,8 +14,8 @@ export const ProfileContainer = () => {
     let {userID} = useParams<{ userID: string }>()
 
     if (!userID) {
-        userID = String(2)
-    }   // Если null, вернуть профиль Димыча
+        userID = String(29584)
+    }   // Если null, вернуть мой профиль
 
     useEffect(() => {
         dispatch(getUserProfileTC(Number(userID)))
