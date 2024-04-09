@@ -43,7 +43,7 @@ type RootStateType = {
 
 // ---------------------------------------------------- ACTION TYPE
 
-export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageTextActionType | ProfileTypeAT
+export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageTextActionType | ProfileTypeAT | SetStatusAT
 
 type AddPostActionType = {
     type: "ADD-POST"
@@ -62,6 +62,10 @@ type UpdateNewMessageTextActionType = {
 type ProfileTypeAT = {
     type: "SET_USER_PROFILE"
     profile: any
+}
+type SetStatusAT = {
+    type: "SET_STATUS"
+    status: string
 }
 
 

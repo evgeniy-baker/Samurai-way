@@ -13,18 +13,25 @@ type getUsersResponseType = {
     error: null
 }
 export type AuthResponseType = {
-    data: {id: string, login: string, email: string}
+    data: { id: string, login: string, email: string }
     fieldsErrors: string[]
     messages: string[]
     resultCode: number
 }
-const instance = axios.create({baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+type UpdateResponseType = {
+    data: {}
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
+}
+
+const instance = axios.create({
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
     headers: {
         'API-KEY': '293a6fc0-ba25-4996-bbd5-4b6010333bd2'
     }
 })
-
 
 
 export const getUsersAPI = (currentPage: number, pageSize: number) => {
@@ -43,9 +50,17 @@ export const unfollowAPI = (userId: number) => {
 }
 
 export const getProfileAPI = (userID: number) => {
-    return  instance.get(`profile/${userID}`)
+    return instance.get(`profile/${userID}`)
 }
 
 export const getAuthAPI = () => {
     return instance.get<AuthResponseType>('auth/me')
+}
+
+export const getStatusAPI = (userID: number) => {
+    return instance.get(`profile/status/${userID}`)
+}
+
+export const updateStatusAPI = (status: string) => {
+    return instance.put(`profile/status`, {status})
 }

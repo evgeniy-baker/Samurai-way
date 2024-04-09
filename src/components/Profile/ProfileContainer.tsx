@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserProfileTC, ProfileType} from "../../redux/profile-reducer";
 import {RootReducerType} from "../../redux/redux-store";
 import {Redirect, useParams} from "react-router-dom";
+import {getStatusAPI, updateStatusAPI} from "../../api/api";
 
 export const ProfileContainer = () => {
 
@@ -19,6 +20,7 @@ export const ProfileContainer = () => {
 
     useEffect(() => {
         dispatch(getUserProfileTC(Number(userID)))
+
     }, [])
 
     if (!isAuth) return <Redirect to={'/Login'}/>

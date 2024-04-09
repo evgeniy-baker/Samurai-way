@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {UsersAPI} from "./UsersAPI";
 import {getUsersTC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, UserType} from "../../redux/users-reducer";
 import {RootReducerType} from "../../redux/redux-store";
-import {WithAuthRedirect} from "../../Hoc/WithAuthRedirect";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {Dialogs} from "../Dialogs/Dialogs";
 import {compose} from "redux";
 

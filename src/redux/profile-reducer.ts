@@ -1,10 +1,11 @@
 import {ActionsType} from "./store";
-import {getProfileAPI} from "../api/api";
+import {getProfileAPI, getStatusAPI, updateStatusAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
+const SET_STATUS = "SET_STATUS"
 
 export type PostType = {
     id?: number
@@ -15,6 +16,7 @@ export type ProfilePageType = {
     posts: PostType[]
     newPostText: string     // value textarea из компоненты MyPost
     profile: ProfileType | null
+    status: string
 }
 
 type ContactsProfileType = {
@@ -23,7 +25,7 @@ type ContactsProfileType = {
     vk: string
     twitter: string
     instagram: string
-    youtube:null
+    youtube: null
     github: string
     mainLink: null
 }
@@ -48,7 +50,8 @@ const initialState: ProfilePageType = {
         {id: 2, message: 'Hello...', likesCount: 10}
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 
@@ -61,15 +64,22 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
     switch (action.type) {
         case ADD_POST:
             const newPost: PostType = newParam
-            return {...state,
-                posts: [...state.posts, newPost], newPostText: ''}
+            return {
+                ...state,
+                posts: [...state.posts, newPost], newPostText: ''
+            }
 
         case UPDATE_NEW_POST_TEXT:
-            return {...state,
-                newPostText: action.newPostText}
+            return {
+                ...state,
+                newPostText: action.newPostText
+            }
 
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
+
+        case SET_STATUS:
+            return {...state, status: action.status}
 
         default:
             return state
@@ -77,10 +87,12 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
 
 }
 
-export const addPostAC = (): ActionsType  => ({type: ADD_POST})
+export const addPostAC = (): ActionsType => ({type: ADD_POST})
 export const updateNewPostTextAC = (text: string): ActionsType =>
     ({type: UPDATE_NEW_POST_TEXT, newPostText: text})
 export const setUserProfileAC = (profile: ProfileType): ActionsType => ({type: SET_USER_PROFILE, profile})
+export const setStatusAC = (status: string): ActionsType => ({type: SET_STATUS, status})
+
 
 
 // Thunk
@@ -91,6 +103,20 @@ export const getUserProfileTC = (userID: number) => (dispatch: Dispatch) => {
         })
 }
 
+export const getStatusTC = (userID: number) => (dispatch: Dispatch) => {
+    getStatusAPI(userID)
+        .then((res) => {
+            dispatch(setStatusAC(res.data))
+        })
+}
 
+export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
+    updateStatusAPI(status)
+        .then((res) => {
+            if (res.data.resultCode === 0) {
+                dispatch(setStatusAC(res.data))
+            }
+        })
+}
 
 export default profileReducer
