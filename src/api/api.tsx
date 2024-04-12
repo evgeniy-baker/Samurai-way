@@ -62,5 +62,14 @@ export const getStatusAPI = (userID: number) => {
 }
 
 export const updateStatusAPI = (status: string) => {
-    return instance.put(`profile/status`, {status})
+    return instance.put<UpdateResponseType>(`profile/status`, {status})
+}
+
+type LoginType = {
+    email: string
+    password: string
+}
+
+export const loginAPI = (data: LoginType) => {
+    return instance.post<UpdateResponseType>(`auth/login`, data)
 }

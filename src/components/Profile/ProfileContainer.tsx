@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Profile} from "./Profile";
 import {useDispatch, useSelector} from "react-redux";
-import {getUserProfileTC, ProfileType} from "../../redux/profile-reducer";
+import {getStatusTC, getUserProfileTC, ProfileType, setStatusAC, updateStatusTC} from "../../redux/profile-reducer";
 import {RootReducerType} from "../../redux/redux-store";
 import {Redirect, useParams} from "react-router-dom";
 import {getStatusAPI, updateStatusAPI} from "../../api/api";
@@ -11,6 +11,7 @@ export const ProfileContainer = () => {
     const dispatch = useDispatch()
     const profile = useSelector<RootReducerType, ProfileType | null>(state => state.profilePage.profile)
     const isAuth = useSelector<RootReducerType, boolean>(state => state.auth.isAuth)
+    // const status = useSelector<RootReducerType, string>(state => state.profilePage.status)
 
     let {userID} = useParams<{ userID: string }>()
 
@@ -20,7 +21,7 @@ export const ProfileContainer = () => {
 
     useEffect(() => {
         dispatch(getUserProfileTC(Number(userID)))
-
+        dispatch(getStatusTC(Number(userID)))
     }, [])
 
     if (!isAuth) return <Redirect to={'/Login'}/>

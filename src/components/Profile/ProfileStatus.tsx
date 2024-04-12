@@ -1,38 +1,45 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
+import {useDispatch} from "react-redux";
+import {updateStatusTC} from "../../redux/profile-reducer";
 
 type ProfileStatusType = {
     status: string
 }
 
-export class ProfileStatus extends React.Component<ProfileStatusType> {
+export const ProfileStatus = (props: ProfileStatusType) => {
 
-    state = { editMode: false }
+    const dispatch = useDispatch()
 
-    activateEditMode() {
-        this.setState({
-            editMode: true
-        })
+    const [status, setStatus] = useState(props.status)
+    const [editMode, setEditMode] = useState(false)
+
+    const activateEditMode = () => {
+        setEditMode(true)
     }
-    deactivateEditMode() {
-        this.setState({
-            editMode: false
-        })
+    const deactivateEditMode = () => {
+        setEditMode(false)
+        dispatch(updateStatusTC(status))
     }
 
-    render() {
-        return (
-            <div>
-                {!this.state.editMode &&
-                    <div>
-                        <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
-                    </div>
-                }
-                {this.state.editMode &&
-                    <input type="text"
-                           value={this.props.status}
-                           onBlur={this.deactivateEditMode.bind(this)} autoFocus={true}/>
-                }
-            </div>
-        )
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setStatus(e.currentTarget.value)
     }
+
+    return (
+        <div>
+            {!editMode &&
+                <div>
+                    <span onDoubleClick={activateEditMode}>{props.status || '-----'}</span>
+                </div>
+            }
+            {editMode &&
+                <input type="text"
+                       onChange={onStatusChange}
+                       value={status}
+                       onBlur={deactivateEditMode}
+                       autoFocus={true}/>
+            }
+        </div>
+    )
+
 }

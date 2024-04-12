@@ -114,7 +114,7 @@ export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
     updateStatusAPI(status)
         .then((res) => {
             if (res.data.resultCode === 0) {
-                dispatch(setStatusAC(res.data))
+                dispatch(setStatusAC(status))
             }
         })
 }
