@@ -10,7 +10,7 @@ type mapStateToPropsType = {
     // isAuth: boolean
 }
 type mapDispatchPropsType = {
-    addMessage: () => void
+    addMessage: (newMessageBody: string) => void
     updateNewMessageText: (text: string) => void
 }
 
@@ -23,7 +23,7 @@ const mapStateToProps = (state: RootReducerType): mapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchPropsType => {
     return {
-        addMessage: () => {dispatch(addMessageActionCreator())},
+        addMessage: (newMessageBody: string) => {dispatch(addMessageActionCreator(newMessageBody))},
         updateNewMessageText: (text: string) => {dispatch(updateNewMessageTextActionCreator(text))},
     }
 }

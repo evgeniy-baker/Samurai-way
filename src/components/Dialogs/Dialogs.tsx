@@ -3,6 +3,7 @@ import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 export const Dialogs = (props: DialogsPropsType) => {
 
@@ -21,7 +22,11 @@ export const Dialogs = (props: DialogsPropsType) => {
     }
 
     const addMessageHandler = () => {
-        props.addMessage()
+        // props.addMessage()
+    }
+
+    const addNewMessage = (values: DialogsType) => {
+        props.addMessage(values.newMessageBody)
     }
 
     // if (!props.isAuth) return <Redirect to={"/Login"}/>
@@ -46,11 +51,37 @@ export const Dialogs = (props: DialogsPropsType) => {
                     </div>
 
                     <div>
-                        <button onClick={addMessageHandler}>Add post</button>
+                        <button onClick={addMessageHandler}>Send</button>
                     </div>
                 </div>
 
             </div>
+
+            <div className={s.textareaBlock}>
+                <DialogsReduxForm onSubmit={addNewMessage}/>
+            </div>
+
         </div>
     );
 };
+
+
+type DialogsType = {
+    newMessageBody: string
+}
+const DialogsForm = (props: InjectedFormProps<DialogsType>) => {
+
+    return <form onSubmit={props.handleSubmit}>
+        <div>
+            <Field component={'textarea'}
+                   name={'newMessageBody'}
+                   placeholder={'Enter message text'}/>
+        </div>
+
+        <div>
+            <button>Send</button>
+        </div>
+    </form>
+
+}
+const DialogsReduxForm = reduxForm<DialogsType>({form: 'DialogsAddMessageText'})(DialogsForm)

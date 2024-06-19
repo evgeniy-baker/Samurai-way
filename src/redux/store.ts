@@ -54,6 +54,7 @@ type UpdateNewPostActionType = {
 }
 type AddMessageActionType = {
     type: "ADD-MESSAGE"
+    newMessageBody: string
 }
 type UpdateNewMessageTextActionType = {
     type: "UPDATE-NEW-MESSAGE-TEXT"
