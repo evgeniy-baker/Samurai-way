@@ -1,14 +1,14 @@
 .nav {
-    grid-area: n;
-    background-color: darkgoldenrod;
-    text-align: center;
+  grid-area: n;
+  background-color: darkgoldenrod;
+  text-align: center;
 }
 
 .item a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .item a.active {
-    color: gold
+  color: gold;
 }

@@ -1,34 +1,30 @@
 type PostType = {
-    id?: number
-    message: string
-    likesCount: number
+  id?: number
+  message: string
+  likesCount: number
 }
 type DialogType = {
-    id: number
-    name: string
+  id: number
+  name: string
 }
 type MessageType = {
-    id: number
-    message: string
+  id: number
+  message: string
 }
-
-
 
 type ProfilePageType = {
-    posts: PostType[]
-    newPostText: string // value textarea из компоненты MyPost
+  posts: PostType[]
+  newPostText: string // value textarea из компоненты MyPost
 }
 type DialogPageType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    newMessageText: string  //  value textarea из компоненты Dialogs
+  dialogs: DialogType[]
+  messages: MessageType[]
+  newMessageText: string //  value textarea из компоненты Dialogs
 }
 type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogPageType
+  profilePage: ProfilePageType
+  dialogsPage: DialogPageType
 }
-
-
 
 // export type StoreType = {
 //     _state: RootStateType
@@ -39,37 +35,40 @@ type RootStateType = {
 //     dispatch: (action: ActionsType) => void
 // }
 
-
-
 // ---------------------------------------------------- ACTION TYPE
 
-export type ActionsType = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateNewMessageTextActionType | ProfileTypeAT | SetStatusAT
+export type ActionsType =
+  | AddPostActionType
+  // | UpdateNewPostActionType
+  | AddMessageActionType
+  | UpdateNewMessageTextActionType
+  | ProfileTypeAT
+  | SetStatusAT
 
 type AddPostActionType = {
-    type: "ADD-POST"
+  type: "ADD-POST"
+  newPostText: string
 }
-type UpdateNewPostActionType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newPostText: string
-}
+// type UpdateNewPostActionType = {
+//   type: "UPDATE-NEW-POST-TEXT"
+//   newPostText: string
+// }
 type AddMessageActionType = {
-    type: "ADD-MESSAGE"
-    newMessageBody: string
+  type: "ADD-MESSAGE"
+  newMessageBody: string
 }
 type UpdateNewMessageTextActionType = {
-    type: "UPDATE-NEW-MESSAGE-TEXT"
-    newMessageText: string
+  type: "UPDATE-NEW-MESSAGE-TEXT"
+  newMessageText: string
 }
 type ProfileTypeAT = {
-    type: "SET_USER_PROFILE"
-    profile: any
+  type: "SET_USER_PROFILE"
+  profile: any
 }
 type SetStatusAT = {
-    type: "SET_STATUS"
-    status: string
+  type: "SET_STATUS"
+  status: string
 }
-
-
 
 // ---------------------------------------------------- STORE
 

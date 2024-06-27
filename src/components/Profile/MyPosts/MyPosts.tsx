@@ -1,45 +1,55 @@
-import React from 'react';
-import s from './MyPosts.module.css'
-import Post from "../Post/Post";
-import {MyPostsPropsType} from "./MyPostsContainer";
+import React from "react"
+import s from "./MyPosts.module.css"
+import Post from "../Post/Post"
+import { MyPostsPropsType } from "./MyPostsContainer"
+import { Field, InjectedFormProps, reduxForm } from "redux-form"
+import { maxLengthCreator, required } from "../../../utils/validators"
+import { Textarea } from "../../Common/FormsControls"
+
+const maxLength10 = maxLengthCreator(10)
 
 export const MyPosts = (props: MyPostsPropsType) => {
+  let postsElements = props.posts.map((p) => <Post key={p.id} message={p.message} likesCount={p.likesCount} />)
 
-    let postsElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
+  const addNewPost = (values: MyPostType) => {
+    props.addPost(values.newPostBody)
+  }
 
-    const addPostElement = React.createRef<HTMLTextAreaElement>()
+  return (
+    <div className={s.postsBlock}>
+      <h3>Мy posts</h3>
 
-    const onPostChange = () => {    // обработчик события для value textarea
-        if (addPostElement.current) {
-            let text = addPostElement.current.value
-            props.updateNewPostText(text)
-        }
-    }
+      <MyPostReduxForm onSubmit={addNewPost} />
 
-    const addPostHandler = () => {
-        props.addPost()
-    }
+      <div className={s.posts}>{postsElements}</div>
+    </div>
+  )
+}
 
-    return (
-        <div className={s.postsBlock}>
-            <h3>Мy posts</h3>
+type MyPostType = {
+  newPostBody: string
+}
+const MyPostFormForm = (props: InjectedFormProps<MyPostType>) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field
+          // component={"textarea"}
+          component={Textarea}
+          name={"newPostBody"}
+          placeholder={"Enter message text"}
+          validate={[required, maxLength10]}
+        />
+      </div>
 
-            <div>
-                <div>
-                    <textarea ref={addPostElement} onChange={onPostChange} value={props.newPostText}/>
-                </div>
+      <div>
+        <button>Add post</button>
+      </div>
+    </form>
+  )
+}
+const MyPostReduxForm = reduxForm<MyPostType>({
+  form: "newPostBody",
+})(MyPostFormForm)
 
-                <div>
-                    <button onClick={addPostHandler}>Add post</button>
-                </div>
-            </div>
-
-            <div className={s.posts}>
-                {postsElements}
-            </div>
-
-        </div>
-    );
-};
-
-export default MyPosts;
+export default MyPosts
